@@ -9,6 +9,12 @@ export class AppComponent {
   food: String;
   successAlert: boolean;
   warningAlert: boolean;
+  // task 2
+  username: string = '';
+  // task 3
+  isVisible = true;
+  count = 0;
+  clicks: number [] = [];
 
   onClick(){
     this.clearValues();
@@ -26,5 +32,17 @@ export class AppComponent {
   clearValues(){
     this.warningAlert = false;
     this.successAlert = false;
+  }
+
+  onValidateName(event: any){
+    if(event.target.value != '' && event.target.value != undefined){
+      this.username = event.target.value;
+    }
+  }
+
+  changeVisibility(){
+    this.isVisible = !this.isVisible;
+    this.count += 1;
+    this.clicks.push(this.count);
   }
 }
