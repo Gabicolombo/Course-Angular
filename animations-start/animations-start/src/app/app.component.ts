@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { trigger, state, style, transition, animate, keyframes, group } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -91,10 +91,16 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
         ]))
       ]), //* é para o status inicial
       transition('* => void', [
-        animate(300, style({
-          transform: 'translateX(100px)',
-          opacity: 0
-        }))
+        group([
+          animate(800, style({
+            transform: 'translateX(100px)',
+            opacity: 0
+          })),
+          animate(300, style({
+            color: 'red'
+          }))
+        ])
+        
       ]),
     ]),
   ]
@@ -120,5 +126,13 @@ export class AppComponent {
 
   onShrink(){
     this.wildState = 'shrunken';
+  }
+
+  animationStarted(event){
+    console.log(event);
+  }
+
+  animationEnded(event){
+    console.log(event);
   }
 }
